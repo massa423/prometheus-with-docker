@@ -1,0 +1,28 @@
+groups:
+  - name: blackbox
+    rules:
+      - alert: ping failure
+        expr: probe_success == 0
+        labels:
+          serverity: critical
+        annotations:
+          summary: "ping to {{ $labels.instance }} is failed"
+
+  - name: rasberry pi servers
+    rules:
+      - alert: server down
+        expr: up{instance=~".*:9100"} == 0
+        for: 5m
+        labels:
+          serverity: critical
+        annotations:
+          summary: "{{ $labels.instance }} is down"
+
+      - alert: disk usage warnings
+        expr: (node_filesystem_size_bytes - node_filesystem_avail_bytes) / node_filesystem_size_bytes >= 0.8
+        for: 5m
+        labels:
+          serverity: warning
+        annotations:
+          summary: "{{ $labels.instance }} disk usage is over 80%({{ $labels.device }})"
+          description: "current valuie: {{ $value }}"
