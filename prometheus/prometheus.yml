@@ -35,9 +35,9 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [icmp]
-    static_configs:
-      - targets:
-        - 192.168.10.221
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/blackbox_exporter_targets.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

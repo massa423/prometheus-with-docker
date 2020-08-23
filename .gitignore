@@ -1,1 +1,4 @@
 alertmanager/alertmanager.yml
+prometheus/blackbox_exporter_targets.yml
+.python-version
+.venv/

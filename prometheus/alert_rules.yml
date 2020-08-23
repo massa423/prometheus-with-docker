@@ -3,10 +3,12 @@ groups:
     rules:
       - alert: ping failure
         expr: probe_success == 0
+        for: 2m
         labels:
-          serverity: critical
+          serverity: warning
         annotations:
-          summary: "ping to {{ $labels.instance }} is failed"
+          summary: "ping is failed"
+          description: "ping to {{ $labels.instance }} is failed"
 
   - name: rasberry pi servers
     rules:
@@ -17,6 +19,7 @@ groups:
           serverity: critical
         annotations:
           summary: "{{ $labels.instance }} is down"
+          description: "@here \n[detail] {{ $labels.instance }} is down"
 
       - alert: disk usage warnings
         expr: (node_filesystem_size_bytes - node_filesystem_avail_bytes) / node_filesystem_size_bytes >= 0.8

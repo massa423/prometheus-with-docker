@@ -1,8 +1,39 @@
 version: '3'
-
 services:
+  prometheus:
+    image: prom/prometheus:v2.20.1
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - ./prometheus/blackbox_exporter_targets.yml:/etc/prometheus/blackbox_exporter_targets.yml
+      - /prometheus:/prometheus
+    ports:
+      - '9090:9090'
+    extra_hosts:
+      - 'kubernetes:10.0.0.1'
+    restart: always
+  node_exporter:
+    image: prom/node-exporter:v1.0.1
+    ports:
+      - '9100:9100'
+    restart: always
   blackbox_exporter:
-    build: ./blackbox_exporter
+    image: prom/blackbox-exporter:v0.17.0
+    volumes:
+      - ./blackbox_exporter/config.yml /etc/blackbox_exporter/config.yml
     ports:
       - '9115:9115'
-
+    restart: always
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - /alertmanager:/alertmanager
+    ports:
+      - '9093:9093'
+    restart: always
+  # grafana:
+  #   image: grafana/grafana:7.1.4
+  #   ports:
+  #     - "3000:3000"
+  #   restart: always
