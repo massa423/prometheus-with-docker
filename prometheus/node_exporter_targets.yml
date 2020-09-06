@@ -1,0 +1,6 @@
+- targets:
+    - kubernetes:9100
+    - node-1:9100
+    - node-2:9100
+    - node-3:9100
+

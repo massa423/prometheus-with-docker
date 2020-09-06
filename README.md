@@ -18,6 +18,14 @@ mkdir /alertmanager
 chown nobody:nogroup /alertmanager
 ```
 
+### Grafana
+
+```
+useradd -u 472 -U -M -s /sbin/nologin grafana
+mkdir /grafana
+chown -R grafana:grafana /grafana
+```
+
 ## use docker compose
 
 ```
@@ -54,14 +62,6 @@ docker run --name blackbox_exporter --network prometheus-network -d -p 9115:9115
 curl 'http://localhost:9115/probe?target=8.8.8.8&module=icmp'
 ```
 
-### node_exporter
-
-#### run container
-
-```
-docker run --name node_exporter --network prometheus-network -d -p 9100:9100 prom/node-exporter:v1.0.1
-```
-
 ### Prometheus
 
 #### build image
@@ -95,5 +95,5 @@ docker run --name alertmanager --network prometheus-network -d -p 9093:9093 -v /
 #### run container
 
 ```
-docker run -d -p 3000:3000 grafana/grafana:7.1.4
+docker run --name grafana -d -p 3000:3000 grafana/grafana:7.1.4
 ```

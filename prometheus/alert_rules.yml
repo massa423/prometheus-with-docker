@@ -10,6 +10,14 @@ groups:
           summary: "ping is failed"
           description: "ping to {{ $labels.instance }} is failed"
 
+      - alert: local network ping failure
+        expr: probe_success{instance=~"192.168..+"} == 0
+        labels:
+          serverity: critical
+        annotations:
+          summary: "local network ping is failed"
+          description: "@here \nping to {{ $labels.instance }} is faild"
+
   - name: rasberry pi servers
     rules:
       - alert: server down
