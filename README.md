@@ -21,9 +21,19 @@ chown nobody:nogroup /alertmanager
 ### Grafana
 
 ```
-useradd -u 472 -U -M -s /sbin/nologin grafana
+groupadd -g 472 grafana
+useradd -u 472 -g 472 -M -s /sbin/nologin grafana
 mkdir /grafana
 chown -R grafana:grafana /grafana
+```
+
+### Loki
+
+```
+groupadd -g 10001 loki
+useradd -u 10001 -g 10001 -M -s /sbin/nologin loki
+mkdir /loki
+chown -R loki:loki /loki
 ```
 
 ## use docker compose
