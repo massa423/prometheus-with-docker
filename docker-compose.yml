@@ -13,9 +13,10 @@ services:
       - '9090:9090'
     extra_hosts:
       - 'kubernetes:10.0.0.1'
-      - 'node-1:10.0.0.3'
-      - 'node-2:10.0.0.5'
-      - 'node-3:10.0.0.6'
+      - 'node-1:10.0.0.2'
+      - 'node-2:10.0.0.3'
+      - 'node-3:10.0.0.4'
+      - 'node-4:10.0.0.5'
     restart: always
   blackbox_exporter:
     image: prom/blackbox-exporter:v0.17.0
