@@ -16,3 +16,17 @@ scrape_configs:
     labels:
       job: varlogs
       __path__: /var/log/*log
+
+  - targets:
+      - localhost
+    labels:
+      job: messages
+      __path__: /var/log/messages
+
+- job_name: monitor
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: exporter
+      __path__: /var/log/*_exporter/*.log
