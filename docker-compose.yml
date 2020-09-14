@@ -53,6 +53,7 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/loki-config.yaml
+    restart: always
 
   promtail:
     image: grafana/promtail:1.6.0
@@ -61,3 +62,4 @@ services:
       - ./promtail/promtail-config.yaml:/etc/promtail/promtail-config.yaml
       - /var/log:/var/log
     command: -config.file=/etc/promtail/promtail-config.yaml
+    restart: always
