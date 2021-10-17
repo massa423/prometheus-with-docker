@@ -11,14 +11,14 @@ mkdir /prometheus
 chown nobody:nogroup /prometheus
 ```
 
-### Alertmanager
+#### Alertmanager
 
 ```
 mkdir /alertmanager
 chown nobody:nogroup /alertmanager
 ```
 
-### Grafana
+#### Grafana
 
 ```
 groupadd -g 472 grafana
@@ -27,13 +27,26 @@ mkdir /grafana
 chown -R grafana:grafana /grafana
 ```
 
-### Loki
+#### Loki
 
 ```
 groupadd -g 10001 loki
 useradd -u 10001 -g 10001 -M -s /sbin/nologin loki
 mkdir /loki
 chown -R loki:loki /loki
+```
+
+### get repository
+
+```
+git clone https://github.com/massa423/prometheus-with-docker.git
+cd prometheus-with-docker
+```
+
+### create alertmanager.yml from sample
+
+```
+cp -p alertmanager/alertmanager{_sample,}.yml
 ```
 
 ## use docker compose
