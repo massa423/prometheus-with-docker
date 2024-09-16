@@ -1,3 +1,8 @@
+# Prerequisites
+
+* Docker
+* Docker Compose V2
+
 # Usage
 
 ## common
@@ -52,8 +57,8 @@ cp -p alertmanager/alertmanager{_sample,}.yml
 ## use docker compose
 
 ```
-docker-compose up -d
-docker-compose ps
+docker compose up -d
+docker compose ps
 ```
 
 ## create container individually
