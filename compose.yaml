@@ -17,7 +17,7 @@ services:
       - 'node-3:10.0.0.4'
     restart: always
   blackbox_exporter:
-    image: prom/blackbox-exporter:v0.17.0
+    image: prom/blackbox-exporter:v0.26.0
     container_name: blackbox_exporter
     volumes:
       - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
