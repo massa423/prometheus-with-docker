@@ -34,7 +34,7 @@ services:
       - '9093:9093'
     restart: always
   grafana:
-    image: grafana/grafana:9.3.1
+    image: grafana/grafana:9.5.21
     container_name: grafana
     volumes:
       - ./grafana/conf:/etc/grafana
